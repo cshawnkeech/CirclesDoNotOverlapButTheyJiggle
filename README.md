@@ -6,3 +6,6 @@ Added:
 Jiggling behavior with a entry-level function to keep circles from overlapping
 Changed the variables to favor floating upwards
 Text identifies index of array & round of current x, y location
+
+Also:
+testing basic understanding of Gig & GitHub by using GitHub desktop to assist in versioning.
