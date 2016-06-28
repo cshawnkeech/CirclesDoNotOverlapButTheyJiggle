@@ -1,6 +1,7 @@
 var Circle;
 var arrayOfCircles = [];
-var totalCircles = 50;
+var totalCircles = 200;
+framerate(60);
 
 function setup() {
   createCanvas(600, 600);
@@ -48,13 +49,13 @@ function bumble(proposedCircle) {
   
     var choice = floor(random(4));
     if (choice === 0) {
-      proposedCircle.x += 0.5;
+      proposedCircle.x += 5/proposedCircle.radius ;
     } else if (choice === 1) {
-      proposedCircle.x -= 0.5;
+      proposedCircle.x -= 5/proposedCircle.radius;
     } else if (choice === 2) {
-      proposedCircle.y += 0.5;
+      proposedCircle.y += 5/proposedCircle.radius;
     } else {
-      proposedCircle.y -= 0.5 ;
+      proposedCircle.y -= 5/proposedCircle.radius ;
     } 
     
     //ensure center is on canvas
@@ -85,6 +86,14 @@ function bump(currentCircleIndex) {
   textAlign(CENTER);
   textSize(currentCircleIndex.radius * 0.75);
   text(arrayOfCircles.indexOf(currentCircleIndex), currentCircleIndex.x, currentCircleIndex.y);
+  if(currentCircleIndex.radius > 20){
+    push();
+    textSize(currentCircleIndex.radius * 0.3);
+    text(round(currentCircleIndex.x) + ", " + round(currentCircleIndex.y), round(currentCircleIndex.x), round(currentCircleIndex.y) + currentCircleIndex.radius/3);
+    
+    pop();
+  }
+  
   pop();
   
   
@@ -107,13 +116,15 @@ function bump(currentCircleIndex) {
 function draw() {
   background(255);
   
+  text(frameCount, 20,20);
   
   for (var k = 0; k < arrayOfCircles.length; k++) {
     bumble(arrayOfCircles[k]);
     arrayOfCircles[k].display();
   }
+  
+  
 }
-
 
 
 
