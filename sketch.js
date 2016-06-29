@@ -1,6 +1,6 @@
 var Circle;
 var arrayOfCircles = [];
-var totalCircles = 100;
+var totalCircles = 500;
 framerate();
 
 function setup() {
