@@ -2,6 +2,9 @@
 A successful implementation of (p5.js Tutorial: 9.5 Random circles with no overlap),
 a Daniel Shiffman Tutorial.  
 
+6/30
+Added options for diagonal travel, favoring upwards diagonal travel
+
 
 6/29
 Created button (and function) to add additional circles
