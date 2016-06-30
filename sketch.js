@@ -85,15 +85,29 @@ function bumble(proposedCircle) {
     var mulliganX = proposedCircle.x;
     var mulliganY = proposedCircle.y;
 
+    //heavily favors upward movement
+
     var choice = floor(random(96));
     if (choice === 0) {
-      proposedCircle.x += 5/proposedCircle.radius ;
+      proposedCircle.x += 5/proposedCircle.radius; //right 0
     } else if (choice === 1) {
-      proposedCircle.x -= 5/proposedCircle.radius;
+      proposedCircle.x -= 5/proposedCircle.radius; //left 1
     } else if (choice === 2) {
+      proposedCircle.y += 5/proposedCircle.radius; //down 2
+    } else if (choice === 3) {
+      proposedCircle.x += 5/proposedCircle.radius; //diag: right down
       proposedCircle.y += 5/proposedCircle.radius;
+    } else if (choice === 4) {
+        proposedCircle.x -= 5/proposedCircle.radius; //diag: left down
+        proposedCircle.y += 5/proposedCircle.radius;
+    } else if (choice >= 5 && choice < 25) { //larger chance for upwards diag
+      proposedCircle.x += 5/proposedCircle.radius; //diag: right up
+      proposedCircle.y -= 5/proposedCircle.radius;
+    } else if (choice >= 25 && choice < 45) { //larger chance for upwards diag
+      proposedCircle.x -= 5/proposedCircle.radius; //diag: left up
+      proposedCircle.y -= 5/proposedCircle.radius;
     } else {
-      proposedCircle.y -= 5/proposedCircle.radius ;
+      proposedCircle.y -= 5/proposedCircle.radius ; //up all others
     }
 
     //ensure center is on canvas
