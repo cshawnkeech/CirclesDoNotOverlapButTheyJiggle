@@ -4,27 +4,62 @@ var totalCircles = 100;
 framerate();
 
 function setup() {
+  createElement('h1', "circles do not overlap, but they do jiggle");
   createCanvas(600, 600);
 
-//checks overlap of original circles
-function checkOverlap() {
-  var overlapping = false;
-  for (var i = 0; i < arrayOfCircles.length; i++) {
-      var possibleOverlap = dist(proposedCircle.x, proposedCircle.y, arrayOfCircles[i].x, arrayOfCircles[i].y)
 
-      if (possibleOverlap < proposedCircle.radius + arrayOfCircles[i].radius) {
-        overlapping = true;
-        break;
-      }
+  var circleButton = createButton("New Circle");
+  circleButton.mouseClicked(newCircle);
+  circleButton.addClass('controls');
+
+  var removeCircleButton = createButton("Remove Small Circles");
+  removeCircleButton.mouseClicked(removeCircle);
+  removeCircleButton.addClass('controls');
+
+  //checks overlap of original circles
+  function checkOverlap() {
+    var overlapping = false;
+
+    for (var i = 0; i < arrayOfCircles.length; i++) {
+        var possibleOverlap = dist(proposedCircle.x, proposedCircle.y, arrayOfCircles[i].x, arrayOfCircles[i].y)
+
+          if (possibleOverlap < proposedCircle.radius + arrayOfCircles[i].radius) {
+            overlapping = true;
+            break;
+          }
     }
 
     if (!overlapping) {
-      return false;
+        return false;
     }
-}
+  }
 
-//writes original circles
-while(arrayOfCircles.length < totalCircles) {
+  function newCircle() {
+    //createElement('h1', "new circle was pressed");
+    totalCircles++;
+
+    while(arrayOfCircles.length < totalCircles) {
+      proposedCircle = new Circle();
+      checkOverlap();
+      if (checkOverlap() === false) {
+        arrayOfCircles.push(proposedCircle);
+      }
+    }
+
+
+  }
+
+  function removeCircle() {
+    for (var p = arrayOfCircles.length - 1; p > 0; p--) {
+      if (arrayOfCircles[p].radius < 20) {
+        arrayOfCircles.splice(p, 1);
+        totalCircles--;
+      }
+    }
+  }
+
+  //writes original circles
+  while(arrayOfCircles.length < totalCircles) {
     var proposedCircle = new Circle();
     var safetyValve;
 
@@ -40,6 +75,8 @@ while(arrayOfCircles.length < totalCircles) {
     }
   }
 
+
+//end of setup
 }
 
 //bumble works fine and now checks for collision
