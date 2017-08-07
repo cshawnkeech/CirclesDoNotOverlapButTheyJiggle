@@ -2,6 +2,9 @@
 A successful implementation of (p5.js Tutorial: 9.5 Random circles with no overlap),
 a Daniel Shiffman Tutorial.  
 
+
+8/6/2017 Re downloaded Atom, GitHub, self-refresh on procedures.
+
 6/30
 Added options for diagonal travel, favoring upwards diagonal travel
 
